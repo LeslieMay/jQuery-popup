@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        .modal{
+            display: none;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            min-height: 100%;
+            background-color: rgba(0,0,0,.8);
+            z-index: 100;
+            cursor: pointer;
+        }
+        .modal_img{
+            z-index: 101;
+            position: fixed;
+            display: none;
+            padding: 10px;
+            background-color: white;
+            opacity: 0;
+            top: 100px;
+            transition: all 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+
+        <div class="content_img">
+            <a href="#">
+                <img src="a5.jpg">
+            </a>
+            <br>
+            <a href="#">
+                <img src="a3.jpg">
+            </a>
+        </div>
+        <div class="modal">
+
+        </div>
+        <div class="modal_img">
+
+        </div>
+
+
+</body>
+<script src="jquery-2.2.2.min.js"></script>
+<script>
+         $(document).ready(function(){
+             var newimg = new Image();
+             $("img").each(function(index){
+               $(this).click(function(){
+                     //$(this).parent("a").attr("href","#");
+                   //$(this).parent("a").removeAttr("target");
+                   newimg.src = $(this).attr("src");
+                   var leftl = document.body.clientWidth;
+                 $(".modal_img").append(newimg);
+                 $(".modal").css("display","block");
+                   $(".modal_img").css("display","block");
+                   $(".modal_img").css("width",newimg.width);
+                   $(".modal_img").css("height",newimg.height);
+                   $(".modal_img").css("left",(leftl/2-newimg.width/2)+"px");
+                   $(".modal_img").css("opacity","1");
+                   $(".modal").click(function(){
+               $(this).css("display","none");
+                 $(".modal_img").css("opacity","0");
+                 $(".modal_img").css("width","0");
+                 $(".modal_img").css("height","0");
+                 $(".modal_img").css("left","0");
+                 $(".modal_img").css("display","none");
+                 $(".modal_img").children(newimg).remove();
+             })
+               })
+             })
+         })
+     </script>
+</html>
